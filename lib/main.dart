@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_files/screens/home/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +22,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        useMaterial3: false,
+        scaffoldBackgroundColor: Colors.white,
+        inputDecorationTheme: const InputDecorationTheme(),
+        dialogBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+            color: Colors.transparent,
+            elevation: 0,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+            ),
+            iconTheme: IconThemeData(
+              color: Colors.black,
+              size: 24,
+            )),
       ),
       home: const HomeScreen(),
     );
